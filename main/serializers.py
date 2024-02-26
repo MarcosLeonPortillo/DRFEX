@@ -1,9 +1,8 @@
 from rest_framework import serializers
 from .models import Post, Valoracion, User
 
-
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.ReadOnlyField()
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 
     class Meta:
         model = Post
@@ -11,7 +10,7 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ValoracionSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 
     class Meta:
         model = Valoracion

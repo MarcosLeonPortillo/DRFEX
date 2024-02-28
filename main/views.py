@@ -3,7 +3,7 @@ from rest_framework import viewsets, filters
 from .models import Post, Valoracion
 from .serializers import PostSerializer, ValoracionSerializer
 from rest_framework import permissions
-from .permissions import PostPermission
+from .permissions import PostPermission, ValoracionPermission
 
 # Create your views here.
 class PostViewSet(viewsets.ModelViewSet):
@@ -16,4 +16,4 @@ class PostViewSet(viewsets.ModelViewSet):
 class ValoracionViewSet(viewsets.ModelViewSet):
     queryset = Valoracion.objects.all()
     serializer_class = ValoracionSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [ValoracionPermission]
